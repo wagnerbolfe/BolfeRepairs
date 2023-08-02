@@ -1,15 +1,11 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using API.Data;
-using API.Entities;
+using Persistence;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class EquipmentController : ControllerBase
+    public class EquipmentController : BaseApiController
     {
         private readonly DataContext _context;
         public EquipmentController(DataContext context)

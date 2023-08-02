@@ -1,11 +1,5 @@
-using System;
-using API.Data;
-using Microsoft.AspNetCore.Builder;
+using Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,17 +34,19 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// var scope = app.Services.CreateScope();
-// var context = scope.ServiceProvider.GetRequiredService<DataContext>();
-// var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-// try
-// {
-//     context.Database.Migrate();
-//     DbInitializer.Initialize(context);
-// }
-// catch (Exception ex)
-// {
-//     logger.LogError(ex, "A problem occurred during migration!");
-// }
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+
+try
+{
+    var context = services.GetRequiredService<DataContext>();
+    context.Database.Migrate();
+}
+catch (Exception ex)
+{
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An error occured during migration!");
+}
 
 app.Run();
+

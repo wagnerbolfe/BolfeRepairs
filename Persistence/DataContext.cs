@@ -1,7 +1,7 @@
-using API.Entities;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data
+namespace Persistence
 {
     public class DataContext : DbContext
     {
@@ -15,6 +15,5 @@ namespace API.Data
         public DbSet<Client> Clients { get; set; }
 
     }
-
 
 }

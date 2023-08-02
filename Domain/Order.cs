@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace API.Entities
+namespace Domain
 {
     public class Order
     {

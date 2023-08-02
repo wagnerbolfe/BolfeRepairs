@@ -1,4 +1,4 @@
-namespace API.Entities
+namespace Domain
 {
     public class Equipment
     {

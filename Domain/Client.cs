@@ -1,6 +1,4 @@
-using System;
-
-namespace API.Entities
+namespace Domain
 {
     public class Client
     {
