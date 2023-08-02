@@ -16,54 +16,13 @@ namespace API.Data
                 new Order
                 {
                     FinishedAt = DateTime.UtcNow,
-                    Equipment= "BRASTEMP BWL 09A",
+                    EquipmentName= "BRASTEMP BWL 09A",
                     Brand = "BRASTEMP",
                     Model = "BWL 09A",
                     Problem = "REFORMA GERAL. ROLAMENTOS, RETENTOR, VEDADORES, TUBO, EIXO E CONSERTO DA TAMPA. NOVA CHAMADA, NAO DRENAVA, TROQUEI A BOMBA, OK EM 03/11/15.",
                     ObsService = "",
                     ObsEquipment = ""
                 },
-                new Order
-                {
-                    FinishedAt = DateTime.UtcNow,
-                    Equipment= "BRASTEMP BWL 09A",
-                    Brand = "BRASTEMP",
-                    Model = "BWL 09A",
-                    Problem = "REFORMA GERAL. ROLAMENTOS, RETENTOR, VEDADORES, TUBO, EIXO E CONSERTO DA TAMPA. NOVA CHAMADA, NAO DRENAVA, TROQUEI A BOMBA, OK EM 03/11/15.",
-                    ObsService = "",
-                    ObsEquipment = ""
-                },
-                new Order
-                {
-                    FinishedAt = DateTime.UtcNow,
-                    Equipment= "BRASTEMP BWL 09A",
-                    Brand = "BRASTEMP",
-                    Model = "BWL 09A",
-                    Problem = "REFORMA GERAL. ROLAMENTOS, RETENTOR, VEDADORES, TUBO, EIXO E CONSERTO DA TAMPA. NOVA CHAMADA, NAO DRENAVA, TROQUEI A BOMBA, OK EM 03/11/15.",
-                    ObsService = "",
-                    ObsEquipment = ""
-                },
-                new Order
-                {
-                    FinishedAt = DateTime.UtcNow,
-                    Equipment= "BRASTEMP BWL 09A",
-                    Brand = "BRASTEMP",
-                    Model = "BWL 09A",
-                    Problem = "REFORMA GERAL. ROLAMENTOS, RETENTOR, VEDADORES, TUBO, EIXO E CONSERTO DA TAMPA. NOVA CHAMADA, NAO DRENAVA, TROQUEI A BOMBA, OK EM 03/11/15.",
-                    ObsService = "",
-                    ObsEquipment = ""
-                },
-                new Order
-                {
-                    FinishedAt = DateTime.UtcNow,
-                    Equipment= "BRASTEMP BWL 09A",
-                    Brand = "BRASTEMP",
-                    Model = "BWL 09A",
-                    Problem = "REFORMA GERAL. ROLAMENTOS, RETENTOR, VEDADORES, TUBO, EIXO E CONSERTO DA TAMPA. NOVA CHAMADA, NAO DRENAVA, TROQUEI A BOMBA, OK EM 03/11/15.",
-                    ObsService = "",
-                    ObsEquipment = ""
-                },
-
             };
 
             foreach (var order in orders)

@@ -51,7 +51,7 @@ namespace API.Data.Migrations
                     b.Property<string>("Neighborhood")
                         .HasColumnType("text");
 
-                    b.Property<int>("Number")
+                    b.Property<int?>("Number")
                         .HasColumnType("integer");
 
                     b.Property<string>("Phone")
@@ -81,9 +81,6 @@ namespace API.Data.Migrations
 
                     b.Property<string>("Brand")
                         .HasColumnType("text");
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -116,7 +113,13 @@ namespace API.Data.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("text");
 
-                    b.Property<string>("Equipment")
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("EquipmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("EquipmentName")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FinishedAt")
@@ -136,7 +139,26 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("EquipmentId");
+
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("API.Entities.Order", b =>
+                {
+                    b.HasOne("API.Entities.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("API.Entities.Equipment", "Equipment")
+                        .WithMany()
+                        .HasForeignKey("EquipmentId");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Equipment");
                 });
 #pragma warning restore 612, 618
         }

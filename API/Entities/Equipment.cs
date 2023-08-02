@@ -10,6 +10,5 @@ namespace API.Entities
         public string Observation { get; set; }
         public string PictureUrl { get; set; }
 
-        public int ClientId { get; set; }
     }
 }
