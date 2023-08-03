@@ -32,19 +32,14 @@ export default function EquipmentList() {
           <Table colorScheme="whiteAlpha">
             <Thead>
               <Tr>
-                <Th px="6" color="gray.300" width="8">
-                  <Checkbox colorScheme="cyan" />
-                </Th>
                 <Th>Máquina</Th>
                 <Th>Data de Cadastro</Th>
                 <Th w="8"></Th>
               </Tr>
             </Thead>
+
             <Tbody>
               <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="cyan" />
-                </Td>
                 <Td>
                   <Box>
                     <Text fontWeight="bold">Wagner Bolfe</Text>
@@ -54,7 +49,8 @@ export default function EquipmentList() {
                 <Td>24 de Abril de 2021</Td>
                 <Td>
                   <Button
-                    as="a"
+                    as={Link}
+                    // href={`/equipment/edit/${equipment.id}`}
                     size="sm"
                     fontSize="sm"
                     colorScheme="cyan"
@@ -66,59 +62,7 @@ export default function EquipmentList() {
               </Tr>
             </Tbody>
 
-            <Tbody>
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="cyan" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Wagner Bolfe</Text>
-                    <Text fontSize="sm" color="gray.300">shaper@live.com</Text>
-                  </Box>
-                </Td>
-                <Td>24 de Abril de 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="cyan"
-                    leftIcon={<Icon as={RiPencilLine} fontSize={16} />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-            </Tbody>
-
-            <Tbody>
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="cyan" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Wagner Bolfe</Text>
-                    <Text fontSize="sm" color="gray.300">shaper@live.com</Text>
-                  </Box>
-                </Td>
-                <Td>24 de Abril de 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="cyan"
-                    leftIcon={<Icon as={RiPencilLine} fontSize={16} />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-            </Tbody>
           </Table>
-
           <Pagination />
         </Box>
       </Flex>

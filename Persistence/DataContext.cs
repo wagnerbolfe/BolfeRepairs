@@ -14,6 +14,13 @@ namespace Persistence
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Client> Clients { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Client>()
+                .Property(b => b.Id)
+                .ValueGeneratedNever();
+        }
+
     }
 
 }
