@@ -6,9 +6,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import agent from "../api/agent";
+import { Client } from "../models/client";
 
 export default function ClientList() {
-  const [clients, setClients] = useState([])
+  const [clients, setClients] = useState<Client[]>([])
+  const [selectedClient, setSelectedClient] = useState<Client | undefined>(undefined)
 
   useEffect(() => {
     agent.Clients.list().then(response => {
@@ -19,14 +21,11 @@ export default function ClientList() {
   return (
     <Box>
       <Header />
-
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <Sidebar />
-
         <Box flex="1" borderRadius={8} bg="gray.800" p="8">
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">Clientes</Heading>
-
             <Button
               as={Link}
               href="/client/create" passHref
@@ -37,97 +36,49 @@ export default function ClientList() {
             >
               Criar novo
             </Button>
-
           </Flex>
 
           <Table colorScheme="whiteAlpha">
             <Thead>
               <Tr>
-                <Th px="6" color="gray.300" width="8">
-                  <Checkbox colorScheme="cyan" />
-                </Th>
                 <Th>Cliente</Th>
+                <Th>Endereço</Th>
+                <Th>N</Th>
+                <Th>Bairro</Th>
                 <Th>Data de Cadastro</Th>
                 <Th w="8"></Th>
               </Tr>
             </Thead>
-            <Tbody>
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="cyan" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Wagner Bolfe</Text>
-                    <Text fontSize="sm" color="gray.300">shaper@live.com</Text>
-                  </Box>
-                </Td>
-                <Td>24 de Abril de 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="cyan"
-                    leftIcon={<Icon as={RiPencilLine} fontSize={16} />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-            </Tbody>
 
-            <Tbody>
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="cyan" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Wagner Bolfe</Text>
-                    <Text fontSize="sm" color="gray.300">shaper@live.com</Text>
-                  </Box>
-                </Td>
-                <Td>24 de Abril de 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="cyan"
-                    leftIcon={<Icon as={RiPencilLine} fontSize={16} />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-            </Tbody>
+            {clients.map(client => (
+              <Tbody key={client.id}>
+                <Tr>
+                  <Td>
+                    <Box>
+                      <Text fontWeight="bold">{client.name}</Text>
+                      <Text fontSize="sm" color="gray.300">{client.phone ?? client.mobile}</Text>
+                    </Box>
+                  </Td>
+                  <Td>{client.street}</Td>
+                  <Td>{client.houseNumber}</Td>
+                  <Td>{client.neighborhood}</Td>
+                  <Td>{client.createdAt.toString()}</Td>
+                  <Td>
+                    <Button
+                      as={Link}
+                      href={`/client/edit/${client.id}`}
+                      size="sm"
+                      fontSize="sm"
+                      colorScheme="cyan"
+                      leftIcon={<Icon as={RiPencilLine} fontSize={16} />}
+                    >
+                      Editar
+                    </Button>
+                  </Td>
+                </Tr>
+              </Tbody>
+            ))}
 
-            <Tbody>
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="cyan" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Wagner Bolfe</Text>
-                    <Text fontSize="sm" color="gray.300">shaper@live.com</Text>
-                  </Box>
-                </Td>
-                <Td>24 de Abril de 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="cyan"
-                    leftIcon={<Icon as={RiPencilLine} fontSize={16} />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-            </Tbody>
           </Table>
 
           <Pagination />
