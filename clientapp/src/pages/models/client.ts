@@ -1,7 +1,6 @@
 export interface Client {
   id: number
   name: string
-  contact: string
   street: string
   houseNumber: string
   neighborhood: string
@@ -11,5 +10,5 @@ export interface Client {
   mobile: string
   details: string
   createdAt: Date
-  situation: string
+  situation: boolean
 }

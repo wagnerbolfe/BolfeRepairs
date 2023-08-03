@@ -12,7 +12,7 @@ const requests = {
 }
 
 const Clients = {
-  list: () => requests.get('/clients')
+  list: () => requests.get('/clients'),
 }
 
 const Orders = {
