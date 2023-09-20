@@ -12,7 +12,6 @@ namespace Application.Orders
         public class Handler : IRequestHandler<Query, List<Order>>
         {
             private readonly DataContext _context;
-
             public Handler(DataContext context)
             {
                 _context = context;

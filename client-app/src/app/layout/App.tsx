@@ -1,17 +1,21 @@
-import { useEffect } from "react"
-import { useStore } from "../stores/store"
 import { observer } from "mobx-react"
 import { Outlet } from "react-router-dom"
+import { useStore } from "../stores/store"
+import { useEffect } from "react"
 import LoadingComponent from "./LoadingComponent"
 
 export default observer(function App() {
-  const { clientStore } = useStore()
+  const { commonStore, userStore } = useStore()
 
   useEffect(() => {
-    clientStore.loadClients()
-  }, [clientStore])
+    if (commonStore.token) {
+      userStore.getUser().finally(() => commonStore.setAppLoaded())
+    } else {
+      commonStore.setAppLoaded()
+    }
+  }, [commonStore, userStore])
 
-  if (clientStore.loadingInitial) return <LoadingComponent />
+  if (!commonStore.appLoaded) return <LoadingComponent />
 
   return (
     <>

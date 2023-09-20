@@ -18,6 +18,16 @@ export default class ClientStore {
       a.createdAt!.getTime() - b.createdAt!.getTime())
   }
 
+  get groupedClients() {
+    return Object.entries(
+      this.clientsByDate.reduce((clients, client) => {
+        const date = client.createdAt!.toISOString().split('T')[0];
+        clients[date] = clients[date] ? [...clients[date], client] : [client];
+        return clients;
+      }, {} as { [key: string]: Client[] })
+    )
+  }
+
   loadClients = async () => {
     this.setLoadingInitial(true)
     try {
@@ -68,7 +78,7 @@ export default class ClientStore {
 
   createClient = async (client: Client) => {
     this.loading = true
-    client.id = '500',
+    client.id = '700',
       client.createdAt = new Date()
     try {
       await agent.Clients.create(client)

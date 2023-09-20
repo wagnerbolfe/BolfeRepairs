@@ -9,7 +9,7 @@ import { format } from "date-fns";
 import { Fragment, useEffect } from "react";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 
-export default observer(function ListClient() {
+export default observer(function ListOrders() {
   const { clientStore } = useStore();
   const { loadClients, clientRegistry, groupedClients } = clientStore;
 
@@ -25,7 +25,7 @@ export default observer(function ListClient() {
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <Box flex="1" borderRadius={8} bg="cyan.800" p="8">
           <Flex mb="8" justify="space-between" align="center">
-            <Heading ml={4} size="lg" fontWeight="normal">Clientes</Heading>
+            <Heading ml={4} size="lg" fontWeight="normal">Ordens</Heading>
             <SearchBox />
             <Button
               as={Link}

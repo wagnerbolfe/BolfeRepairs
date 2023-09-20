@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { Client } from "../models/client";
+import { User, UserFormValues } from "../models/user";
+import { store } from "../stores/store";
 
 const spleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -8,6 +10,12 @@ const spleep = (delay: number) => {
 }
 
 axios.defaults.baseURL = 'http://localhost:5000/api'
+
+axios.interceptors.request.use(config => {
+  const token = store.commonStore.token;
+  if (token && config.headers) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+})
 
 axios.interceptors.response.use(async response => {
   try {
@@ -36,6 +44,11 @@ const Clients = {
   delete: (id: string) => requests.del<void>(`/clients/${id}`),
 }
 
+const Account = {
+  current: () => requests.get<User>('/account'),
+  login: (user: UserFormValues) => requests.post<User>('/account/login', user),
+}
+
 const Orders = {
   list: () => requests.get('/orders')
 }
@@ -45,7 +58,7 @@ const Equipments = {
 }
 
 const agent = {
-  Clients, Equipments, Orders
+  Clients, Equipments, Orders, Account
 }
 
 export default agent

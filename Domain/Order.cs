@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain
 {
     public class Order
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public string EquipmentName { get; set; }
         public string Brand { get; set; }
@@ -11,8 +14,9 @@ namespace Domain
         public string ObsEquipment { get; set; }
         public DateTime FinishedAt { get; set; }
 
-        public Client Client { get; set; }
-        public Equipment Equipment { get; set; }
+        public int ClientId { get; set; }
+        public int EquipmentId { get; set; }
+
 
     }
 }

@@ -4,9 +4,10 @@ namespace Domain
 {
     public class Client
     {
-        // [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public string FullName { get; set; }
+        public string Contact { get; set; }
         public string Street { get; set; }
         public string Neighborhood { get; set; }
         public string City { get; set; }
@@ -16,5 +17,6 @@ namespace Domain
         public string Details { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool Situation { get; set; }
+
     }
 }

@@ -1,12 +1,9 @@
-import { Button, Flex, Icon, Image, Link, useBreakpointValue } from "@chakra-ui/react";
+import { Button, Flex, Icon, Image, Link } from "@chakra-ui/react";
 import { Profile } from "../Header/Profile";
 import { RiLayoutTopLine } from "react-icons/ri";
 
 export function Header() {
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    lg: true
-  })
+
 
   return (
     <Flex
@@ -35,6 +32,9 @@ export function Header() {
           Clientes
         </Button>
         <Button
+          as={Link}
+          href="/orders"
+          style={{ textDecoration: 'none' }}
           size="lg"
           fontSize="lg"
           colorScheme="cyan"
@@ -43,6 +43,9 @@ export function Header() {
           Ordens
         </Button>
         <Button
+          as={Link}
+          href="/equipments"
+          style={{ textDecoration: 'none' }}
           size="lg"
           fontSize="lg"
           colorScheme="cyan"
@@ -53,7 +56,7 @@ export function Header() {
       </Flex>
 
       <Flex align="center" ml={["65%", "auto"]}>
-        <Profile showProfileData={isWideVersion} />
+        <Profile />
       </Flex>
     </Flex>
   )

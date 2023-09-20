@@ -1,22 +1,33 @@
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Avatar, Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { useStore } from "../../stores/store";
 
-interface ProfileProps {
-  showProfileData?: boolean
-}
 
-export function Profile({ showProfileData = true }: ProfileProps) {
+export function Profile() {
+  const { userStore: { isLoggedIn, user, logout } } = useStore()
+
   return (
     <Flex align="center">
-      {showProfileData && (
-        <Box mr="4" textAlign="right">
-          <Text>Wagner Bolfe</Text>
-          <Text color="cyan.300" fontSize="small">
-            shaper@live.com
-          </Text>
-        </Box>
-      )}
-
-      <Avatar size="md" name="Wagner Bolfe" src="https://github.com/wagnerbolfe.png" />
+      <Menu>
+        <MenuButton
+          as={Button}
+          rightIcon={<ChevronDownIcon />}
+          size="lg"
+          fontSize="lg"
+          colorScheme="cyan"
+        >
+          {isLoggedIn &&
+            <Flex flexDirection="row" gap={2} justify="center" align="center">
+              <Avatar size="sm" name="Wagner Bolfe" src="https://github.com/wagnerbolfe.png" />
+              <Text>{user?.displayName}</Text>
+            </Flex>
+          }
+        </MenuButton>
+        <MenuList bgColor={"cyan.50"}>
+          <MenuItem onClick={logout} bgColor={"cyan.50"} color={"cyan.900"}>Sair</MenuItem>
+        </MenuList>
+      </Menu>
     </Flex>
+
   )
 }
